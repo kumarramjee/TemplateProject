@@ -4,7 +4,7 @@ package riocatlog.mobimedia.com.templaterioproject.ui.model;
  * Created by ram on 7/7/15.
  */
 public class ProductData {
-    public String entity_id;
+    public int entity_id;
     public String entity_type_id;
     public String attribute_set_id;
     public String type_id;
@@ -37,5 +37,12 @@ public class ProductData {
     public String foodcategory;
     public String isfeatured;
     public String description;
+    public Images images;
+    public String tier_price_changed;
+    public String stock_item;
+    public String is_in_stock;
+    public String is_salable;
+    public String prod_position;
+
 
 }

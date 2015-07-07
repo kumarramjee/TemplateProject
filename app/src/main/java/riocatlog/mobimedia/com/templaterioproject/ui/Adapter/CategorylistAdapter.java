@@ -1,7 +1,6 @@
 package riocatlog.mobimedia.com.templaterioproject.ui.Adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,17 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import riocatlog.mobimedia.com.templaterioproject.R;
-import riocatlog.mobimedia.com.templaterioproject.ui.CatlogRioMain;
-import riocatlog.mobimedia.com.templaterioproject.ui.model.Categories;
+import riocatlog.mobimedia.com.templaterioproject.ui.model.MainCategories;
 
 /**
  * Created by ram on 6/7/15.
  */
 public class CategorylistAdapter extends BaseAdapter {
     Context mcontext;
-    List<Categories> mCategories = new ArrayList<Categories>();
+    List<MainCategories> mCategories = new ArrayList<MainCategories>();
 
-    public CategorylistAdapter(Context mContext, List<Categories> catitems) {
+    public CategorylistAdapter(Context mContext, List<MainCategories> catitems) {
         this.mcontext = mContext;
         this.mCategories = catitems;
     }
@@ -60,7 +58,7 @@ public class CategorylistAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        Categories mcategories = (Categories) getItem(position);
+        MainCategories mcategories = (MainCategories) getItem(position);
 
         holder.categoriesid.setText(mcategories.categoriesid);
         holder.categoryname.setText(mcategories.categoryname);

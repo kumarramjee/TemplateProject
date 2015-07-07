@@ -7,7 +7,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -34,7 +33,8 @@ import java.util.List;
 import riocatlog.mobimedia.com.templaterioproject.R;
 import riocatlog.mobimedia.com.templaterioproject.ui.Adapter.CategorylistAdapter;
 import riocatlog.mobimedia.com.templaterioproject.ui.Adapter.ExpandableListAdapter;
-import riocatlog.mobimedia.com.templaterioproject.ui.model.Categories;
+import riocatlog.mobimedia.com.templaterioproject.ui.model.MainCategories;
+import riocatlog.mobimedia.com.templaterioproject.ui.model.Images;
 import riocatlog.mobimedia.com.templaterioproject.ui.model.ProductData;
 import riocatlog.mobimedia.com.templaterioproject.ui.ui.NotiFicationActivity;
 
@@ -44,7 +44,7 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
     private TextView rootcatname;
     private TextView categoryid;
     private TextView mediaurltext;
-    private List<Categories> catitems;
+    private List<MainCategories> catitems;
     private ListView categorylist;
     private CategorylistAdapter catadapter;
     private String jsonstring;
@@ -64,7 +64,7 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
         setContentView(R.layout.activity_catlog_rio_main);
         SetupUI();
         jsonstring = loadJSONFromAsset();
-        catitems = new ArrayList<Categories>();
+        catitems = new ArrayList<MainCategories>();
         catitems = ReadJsonFromExternal(jsonstring);
         catadapter = new CategorylistAdapter(CatlogRioMain.this, catitems);
         categorylist.setAdapter(catadapter);
@@ -74,6 +74,8 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
         notification.setOnClickListener(this);
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
         expListView.setAdapter(listAdapter);
+
+
     }
 
     private void prepareListData() {
@@ -115,11 +117,11 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
         expListView = (ExpandableListView) findViewById(R.id.expendiblelistview);
     }
 
-    private List<Categories> ReadJsonFromExternal(String str) {
-        List<Categories> categorylist = new ArrayList<Categories>();
+    private List<MainCategories> ReadJsonFromExternal(String str) {
+        List<MainCategories> categorylist = new ArrayList<MainCategories>();
 
         try {
-            Categories catitem = new Categories();
+            MainCategories catitem = new MainCategories();
 
             JSONObject jsonObj = new JSONObject(str);
             String timestanp = jsonObj.getString("timestamp");
@@ -151,6 +153,7 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
                 catitem.categoryposition = cat_position;
                 catitem.is_active = is_active;
                 categorylist.add(catitem);
+
                 JSONArray productlistarray = jsonfirstarrayobject.getJSONArray("productlist");
                 ProductData productdata = new ProductData();
 
@@ -160,7 +163,7 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
                     //this is second internal array
                     JSONObject jproductlistarray = productlistarray.getJSONObject(j);
 
-                    productdata.entity_id = jproductlistarray.getString("entity_id");
+                    productdata.entity_id = jproductlistarray.getInt("entity_id");
                     productdata.entity_type_id = jproductlistarray.getString("entity_type_id");
                     productdata.attribute_set_id = jproductlistarray.getString("attribute_set_id");
                     productdata.type_id = jproductlistarray.getString("type_id");
@@ -175,14 +178,38 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
                     productdata.thumbnail = jproductlistarray.getString("thumbnail");
                     productdata.url_key = jproductlistarray.getString("url_key");
                     productdata.url_path = jproductlistarray.getString("url_path");
+                    productdata.options_container = jproductlistarray.getString("options_container");
+                    productdata.image_label = jproductlistarray.getString("image_label");
 
-                    /*
-                    Add media galary and image url
 
-                    */
+                    String prod_position = jproductlistarray.getString("prod_position");
+                    String is_in_stock = jproductlistarray.getString("is_in_stock");
+                    String is_salable = jproductlistarray.getString("is_salable");
+                    String tier_price_changed = jproductlistarray.getString("tier_price_changed");
+
+
+                    JSONObject mediagallary = jproductlistarray.getJSONObject("media_gallery");
+                    Images imagesgalary = new Images();
+                    List<Images> mlistImages = new ArrayList<Images>();
+                    JSONArray imagesobj = mediagallary.getJSONArray("images");
+                    for (int p = 0; p < imagesobj.length(); p++) {
+                        JSONObject jobjimages = imagesobj.getJSONObject(p);
+                        imagesgalary.valueid = jobjimages.getInt("value_id");
+                        imagesgalary.file = jobjimages.getString("file");
+                        imagesgalary.label = jobjimages.getString("label");
+                        imagesgalary.position = jobjimages.getString("position");
+                        imagesgalary.disabled = jobjimages.getString("position");
+                        imagesgalary.label_default = jobjimages.getString("label_default");
+                        imagesgalary.position_default = jobjimages.getString("position_default");
+                        imagesgalary.disabled_default = jobjimages.getString("disabled_default");
+                        mlistImages.add(imagesgalary);
+
+                    }
+
+
                     mListProductdata.add(productdata);
 
-
+                    Log.i("Cat", "Main Rio Product==" + mListProductdata.size());
                 }
                 //Log.i("Catlog Rio Main", "values==:" + category_name + "," + category_name_arabic + "," + category_id + "," + is_active + "," + cat_position);
 
