@@ -35,6 +35,7 @@ import riocatlog.mobimedia.com.templaterioproject.R;
 import riocatlog.mobimedia.com.templaterioproject.ui.Adapter.CategorylistAdapter;
 import riocatlog.mobimedia.com.templaterioproject.ui.Adapter.ExpandableListAdapter;
 import riocatlog.mobimedia.com.templaterioproject.ui.model.Categories;
+import riocatlog.mobimedia.com.templaterioproject.ui.model.ProductData;
 import riocatlog.mobimedia.com.templaterioproject.ui.ui.NotiFicationActivity;
 
 
@@ -126,6 +127,8 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
             String rootid = jsonObj.getString("rootcategory_id");
             String mediaurlname = jsonObj.getString("mediaurl");
 
+            SetJsonParseValuetToTextView(timestanp, rootname, rootid);
+
             //first jsonB=object is staring from here
             JSONObject jsonfirst = jsonObj.getJSONObject("categories");
 
@@ -148,33 +151,39 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
                 catitem.categoryposition = cat_position;
                 catitem.is_active = is_active;
                 categorylist.add(catitem);
-              /*  JSONArray productlistarray=jsonfirstarrayobject.getJSONArray("productlist");
-                for(int j=0;j<productlistarray.length();j++)
-                {
+                JSONArray productlistarray = jsonfirstarrayobject.getJSONArray("productlist");
+                ProductData productdata = new ProductData();
+
+                List<ProductData> mListProductdata = new ArrayList<ProductData>();
+
+                for (int j = 0; j < productlistarray.length(); j++) {
                     //this is second internal array
-                    JSONObject jproductlistarray=productlistarray.getJSONObject(j);
+                    JSONObject jproductlistarray = productlistarray.getJSONObject(j);
 
-                    String entity_id=jproductlistarray.getString("entity_id");
-                    String entity_type_id=jproductlistarray.getString("entity_type_id");
-                    String attribute_set_id=jproductlistarray.getString("attribute_set_id");
-                    String type_id=jproductlistarray.getString("type_id");
-                    String sku=jproductlistarray.getString("sku");
-                    String has_options=jproductlistarray.getString("has_options");
-                    String required_options=jproductlistarray.getString("required_options");
-                    String created_at=jproductlistarray.getString("created_at");
-                    String updated_at=jproductlistarray.getString("updated_at");
-                    String name=jproductlistarray.getString("name");
-                    String image=jproductlistarray.getString("image");
-                    String small_image=jproductlistarray.getString("small_image");
-                    String thumbnail=jproductlistarray.getString("thumbnail");
-                    String url_key=jproductlistarray.getString("url_key");
-                    String url_path=jproductlistarray.getString("url_path");
+                    productdata.entity_id = jproductlistarray.getString("entity_id");
+                    productdata.entity_type_id = jproductlistarray.getString("entity_type_id");
+                    productdata.attribute_set_id = jproductlistarray.getString("attribute_set_id");
+                    productdata.type_id = jproductlistarray.getString("type_id");
+                    productdata.sku = jproductlistarray.getString("sku");
+                    productdata.has_options = jproductlistarray.getString("has_options");
+                    productdata.required_options = jproductlistarray.getString("required_options");
+                    productdata.created_at = jproductlistarray.getString("created_at");
+                    productdata.updated_at = jproductlistarray.getString("updated_at");
+                    productdata.name = jproductlistarray.getString("name");
+                    productdata.image = jproductlistarray.getString("image");
+                    productdata.small_image = jproductlistarray.getString("small_image");
+                    productdata.thumbnail = jproductlistarray.getString("thumbnail");
+                    productdata.url_key = jproductlistarray.getString("url_key");
+                    productdata.url_path = jproductlistarray.getString("url_path");
+
+                    /*
+                    Add media galary and image url
+
+                    */
+                    mListProductdata.add(productdata);
 
 
-
-                    Log.i("Cat Log", "INternal Array items==" + entity_id + "," + entity_type_id + "," + created_at + "," + updated_at);
                 }
-*/
                 //Log.i("Catlog Rio Main", "values==:" + category_name + "," + category_name_arabic + "," + category_id + "," + is_active + "," + cat_position);
 
                 //Second internal array starts from here
@@ -182,8 +191,6 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
 
             }
 
-
-            SetJsonParseValuetToTextView(timestanp, rootname, rootid);
 
         } catch (Exception e) {
             e.printStackTrace();
