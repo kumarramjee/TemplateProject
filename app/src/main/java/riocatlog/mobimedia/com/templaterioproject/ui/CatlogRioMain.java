@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -36,6 +37,7 @@ import riocatlog.mobimedia.com.templaterioproject.ui.Adapter.ExpandableListAdapt
 import riocatlog.mobimedia.com.templaterioproject.ui.model.MainCategories;
 import riocatlog.mobimedia.com.templaterioproject.ui.model.Images;
 import riocatlog.mobimedia.com.templaterioproject.ui.model.ProductData;
+import riocatlog.mobimedia.com.templaterioproject.ui.ui.NextActivity;
 import riocatlog.mobimedia.com.templaterioproject.ui.ui.NotiFicationActivity;
 
 
@@ -52,11 +54,12 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
     private String notificationtitle = "Rio Catlog";
     private String subject = "Rio Catlog Update";
     private String body = "MobiMedia is a mobile led digital solutions organization. Our focus is empowerment, enhancement and enrichment of consumer experience with a brand. To achieve this goal, our offerings are divided into Product Platforms and Bespoke Consumer Engagement Applications Services. Though we develop products, we believe in delivering them as Services to our clients. We are committed to work with our clients as partners and help them achieve their business goals.";
-    ExpandableListAdapter listAdapter;
-    ExpandableListView expListView;
-    List<String> listDataHeader;
-    HashMap<String, List<String>> listDataChild;
-    Bitmap bm;
+    private ExpandableListAdapter listAdapter;
+    private ExpandableListView expListView;
+    private List<String> listDataHeader;
+    private HashMap<String, List<String>> listDataChild;
+    private Bitmap bm;
+    private ImageView footer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +69,10 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
         jsonstring = loadJSONFromAsset();
         catitems = new ArrayList<MainCategories>();
         catitems = ReadJsonFromExternal(jsonstring);
+        Log.i("Category Items ", "Size==" + catitems.size());
         catadapter = new CategorylistAdapter(CatlogRioMain.this, catitems);
         categorylist.setAdapter(catadapter);
+        catadapter.notifyDataSetChanged();
         prepareListData();
 
 
@@ -75,7 +80,7 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
         expListView.setAdapter(listAdapter);
 
-
+        footer.setOnClickListener(this);
     }
 
     private void prepareListData() {
@@ -115,6 +120,7 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
         categorylist = (ListView) findViewById(R.id.categorylist);
         notification = (TextView) findViewById(R.id.notification);
         expListView = (ExpandableListView) findViewById(R.id.expendiblelistview);
+        footer = (ImageView) findViewById(R.id.footer);
     }
 
     private List<MainCategories> ReadJsonFromExternal(String str) {
@@ -122,26 +128,18 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
 
         try {
             MainCategories catitem = new MainCategories();
-
             JSONObject jsonObj = new JSONObject(str);
             String timestanp = jsonObj.getString("timestamp");
             String rootname = jsonObj.getString("rootcategory_name");
             String rootid = jsonObj.getString("rootcategory_id");
             String mediaurlname = jsonObj.getString("mediaurl");
-
             SetJsonParseValuetToTextView(timestanp, rootname, rootid);
-
-            //first jsonB=object is staring from here
             JSONObject jsonfirst = jsonObj.getJSONObject("categories");
-
-            //starting first array from here
-
             JSONArray childcategory = jsonfirst.getJSONArray("childcategories");
 
             for (int i = 0; i < childcategory.length(); i++) {
-
+                Log.i("Length ", "of Child ==" + childcategory.length());
                 JSONObject jsonfirstarrayobject = childcategory.getJSONObject(i);
-
                 String category_name = jsonfirstarrayobject.getString("category_name");
                 String category_name_arabic = jsonfirstarrayobject.getString("category_name_arabic");
                 String category_id = jsonfirstarrayobject.getString("category_id");
@@ -154,7 +152,7 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
                 catitem.is_active = is_active;
                 categorylist.add(catitem);
 
-                JSONArray productlistarray = jsonfirstarrayobject.getJSONArray("productlist");
+               /* JSONArray productlistarray = jsonfirstarrayobject.getJSONArray("productlist");
                 ProductData productdata = new ProductData();
 
                 List<ProductData> mListProductdata = new ArrayList<ProductData>();
@@ -210,11 +208,7 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
                     mListProductdata.add(productdata);
 
                     Log.i("Cat", "Main Rio Product==" + mListProductdata.size());
-                }
-                //Log.i("Catlog Rio Main", "values==:" + category_name + "," + category_name_arabic + "," + category_id + "," + is_active + "," + cat_position);
-
-                //Second internal array starts from here
-
+                }*/
 
             }
 
@@ -264,6 +258,10 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
                 showNotification();
 
                 break;
+            case R.id.footer:
+                Intent intent_next = new Intent(this, NextActivity.class);
+                startActivity(intent_next);
+
             default:
                 break;
         }

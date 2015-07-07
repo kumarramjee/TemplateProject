@@ -24,6 +24,10 @@
             android:name=".ui.ui.NotiFicationActivity"
             android:label="@string/title_activity_noti_fication" >
         </activity>
+        <activity
+            android:name=".ui.ui.NextActivity"
+            android:label="@string/title_activity_next" >
+        </activity>
     </application>
 
 </manifest>

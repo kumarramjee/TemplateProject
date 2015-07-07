@@ -6,93 +6,93 @@
     tools:context=".CatlogRioMain">
 
 
-            <TextView
-                android:id="@+id/riocatlogtext"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerVertical="true"
-                android:gravity="center"
-                android:text="RioCatLog"
-                android:textColor="#ffffff"
-                android:textSize="25sp" />
+    <TextView
+        android:id="@+id/riocatlogtext"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="RioCatLog"
+        android:textColor="#ffffff"
+        android:textSize="25sp" />
 
 
-            <TextView
-                android:id="@+id/categoryid"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/riocatlogtext"
-                android:layout_margin="16dp"
-                android:text="@string/hello_world"
-                android:textColor="#ffffff" />
+    <TextView
+        android:id="@+id/categoryid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/riocatlogtext"
+        android:layout_margin="16dp"
+        android:text="@string/hello_world"
+        android:textColor="#ffffff" />
 
-            <TextView
-                android:id="@+id/textshow"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/categoryid"
-                android:layout_margin="16dp"
-                android:text="@string/hello_world"
-                android:textColor="#ffffff" />
+    <TextView
+        android:id="@+id/textshow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/categoryid"
+        android:layout_margin="16dp"
+        android:text="@string/hello_world"
+        android:textColor="#ffffff" />
 
-            <TextView
-                android:id="@+id/rootcatname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textshow"
-                android:layout_margin="16dp"
-                android:text="@string/hello_world"
-                android:textColor="#ffffff" />
+    <TextView
+        android:id="@+id/rootcatname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textshow"
+        android:layout_margin="16dp"
+        android:text="@string/hello_world"
+        android:textColor="#ffffff" />
 
-            <TextView
-                android:id="@+id/mediaurl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rootcatname"
-                android:layout_margin="16dp"
-                android:text="@string/hello_world"
-                android:textColor="#ffffff"
-                android:visibility="gone" />
+    <TextView
+        android:id="@+id/mediaurl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rootcatname"
+        android:layout_margin="16dp"
+        android:text="@string/hello_world"
+        android:textColor="#ffffff"
+        android:visibility="gone" />
 
-            <ListView
-                android:id="@+id/categorylist"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_below="@+id/mediaurl"
-                android:layout_margin="16dp"
-                android:background="#80000000"></ListView>
+    <ListView
+        android:id="@+id/categorylist"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/mediaurl"
+        android:layout_margin="16dp"
+        android:background="#80000000"></ListView>
 
-            <TextView
-                android:id="@+id/notification"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_below="@+id/expendiblelistview"
-                android:layout_margin="5dp"
-                android:background="#80000000"
-                android:gravity="center"
-                android:text="Get Notification"
-                android:textColor="#ffffff"
-                android:textSize="15sp" />
+    <TextView
+        android:id="@+id/notification"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_below="@+id/expendiblelistview"
+        android:layout_margin="5dp"
+        android:background="#80000000"
+        android:gravity="center"
+        android:text="Get Notification"
+        android:textColor="#ffffff"
+        android:textSize="15sp" />
 
-            <ExpandableListView
-                android:id="@+id/expendiblelistview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/categorylist"
-                android:layout_margin="5dp"
-                android:background="#80000000"></ExpandableListView>
+    <ExpandableListView
+        android:id="@+id/expendiblelistview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/categorylist"
+        android:layout_margin="5dp"
+        android:background="#80000000"></ExpandableListView>
 
-            <TextView
-                android:id="@+id/footer"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="5dp"
-                android:background="#80000000"
-                android:gravity="center"
-                android:text="Signout"
-                android:textColor="#ffffff"
-                android:textSize="15sp" />
+    <ImageView
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="5dp"
+        android:background="#80000000"
+        android:gravity="center"
+        android:src="@drawable/nexticon"
+        android:textColor="#ffffff"
+        android:textSize="15sp" />
 
 </RelativeLayout>
