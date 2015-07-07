@@ -1,54 +1,64 @@
 package riocatlog.mobimedia.com.templaterioproject.ui;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.MappedByteBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
 import riocatlog.mobimedia.com.templaterioproject.R;
 import riocatlog.mobimedia.com.templaterioproject.ui.Adapter.CategorylistAdapter;
 import riocatlog.mobimedia.com.templaterioproject.ui.model.Categories;
+import riocatlog.mobimedia.com.templaterioproject.ui.ui.NotiFicationActivity;
 
 
-public class CatlogRioMain extends Activity {
-    TextView textshow;
-    TextView rootcatname;
-    TextView categoryid;
-    TextView mediaurltext;
-    List<Categories> catitems = new ArrayList<Categories>();
-    ListView categorylist;
+public class CatlogRioMain extends Activity implements TextView.OnClickListener {
+    private TextView textshow;
+    private TextView rootcatname;
+    private TextView categoryid;
+    private TextView mediaurltext;
+    private List<Categories> catitems;
+    private ListView categorylist;
+    private CategorylistAdapter catadapter;
+    private String jsonstring;
+    private TextView notification;
+    private String notificationtitle = "Rio Catlog";
+    private String subject = "Rio Catlog Update";
+    private String body = "MobiMedia is a mobile led digital solutions organization. Our focus is empowerment, enhancement and enrichment of consumer experience with a brand. To achieve this goal, our offerings are divided into Product Platforms and Bespoke Consumer Engagement Applications Services. Though we develop products, we believe in delivering them as Services to our clients. We are committed to work with our clients as partners and help them achieve their business goals.";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catlog_rio_main);
         SetupUI();
-        String str = loadJSONFromAsset();
-        catitems = ReadJsonFromExternal(str);
-
-        Log.i("Categorty list ", "item==" + catitems);
-
-        CategorylistAdapter catadapter = new CategorylistAdapter(CatlogRioMain.this, catitems);
+        jsonstring = loadJSONFromAsset();
+        catitems = new ArrayList<Categories>();
+        catitems = ReadJsonFromExternal(jsonstring);
+        catadapter = new CategorylistAdapter(CatlogRioMain.this, catitems);
         categorylist.setAdapter(catadapter);
+
+        notification.setOnClickListener(this);
     }
 
     public String loadJSONFromAsset() {
@@ -73,6 +83,7 @@ public class CatlogRioMain extends Activity {
         categoryid = (TextView) findViewById(R.id.categoryid);
         mediaurltext = (TextView) findViewById(R.id.mediaurl);
         categorylist = (ListView) findViewById(R.id.categorylist);
+        notification = (TextView) findViewById(R.id.notification);
     }
 
     private List<Categories> ReadJsonFromExternal(String str) {
@@ -95,6 +106,7 @@ public class CatlogRioMain extends Activity {
             JSONArray childcategory = jsonfirst.getJSONArray("childcategories");
 
             for (int i = 0; i < childcategory.length(); i++) {
+
                 JSONObject jsonfirstarrayobject = childcategory.getJSONObject(i);
 
                 String category_name = jsonfirstarrayobject.getString("category_name");
@@ -108,9 +120,35 @@ public class CatlogRioMain extends Activity {
                 catitem.categoryposition = cat_position;
                 catitem.is_active = is_active;
                 categorylist.add(catitem);
+                //   JSONArray productlistarray=jsonfirstarrayobject.getJSONArray("productlist");
+              /*  for(int j=0;j<productlistarray.length();j++)
+                {
+                    //this is second internal array
+                    JSONObject jproductlistarray=productlistarray.getJSONObject(j);
+
+                    String entity_id=jproductlistarray.getString("entity_id");
+                    String entity_type_id=jproductlistarray.getString("entity_type_id");
+                    String attribute_set_id=jproductlistarray.getString("attribute_set_id");
+                    String type_id=jproductlistarray.getString("type_id");
+                    String sku=jproductlistarray.getString("sku");
+                    String has_options=jproductlistarray.getString("has_options");
+                    String required_options=jproductlistarray.getString("required_options");
+                    String created_at=jproductlistarray.getString("created_at");
+                    String updated_at=jproductlistarray.getString("updated_at");
+                    String name=jproductlistarray.getString("name");
+                    String image=jproductlistarray.getString("image");
+                    String small_image=jproductlistarray.getString("small_image");
+                    String thumbnail=jproductlistarray.getString("thumbnail");
+                    String url_key=jproductlistarray.getString("url_key");
+                    String url_path=jproductlistarray.getString("url_path");
 
 
-                Log.i("Catlog Rio Main", "values==:" + category_name + "," + category_name_arabic + "," + category_id + "," + is_active + "," + cat_position);
+
+                    Log.i("Cat Log","INternal Array items=="+entity_id+","+entity_type_id+","+created_at+","+updated_at);
+                }
+*/
+
+                //Log.i("Catlog Rio Main", "values==:" + category_name + "," + category_name_arabic + "," + category_id + "," + is_active + "," + cat_position);
 
                 //Second internal array starts from here
 
@@ -118,7 +156,7 @@ public class CatlogRioMain extends Activity {
             }
 
 
-            SetJsonParseValuetToTextView(timestanp, rootname, rootid, mediaurlname);
+            SetJsonParseValuetToTextView(timestanp, rootname, rootid);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -128,11 +166,57 @@ public class CatlogRioMain extends Activity {
 
     }
 
-    private void SetJsonParseValuetToTextView(String timestanp, String rootname, String rootid, String mediaurl) {
+    private void SetJsonParseValuetToTextView(String timestanp, String rootname, String rootid) {
         textshow.setText("Timestamp :" + timestanp);
         rootcatname.setText("Category Name :" + rootname);
         categoryid.setText("Category Id :" + rootid);
-        mediaurltext.setText("Url :" + mediaurl);
+
+    }
+    private Bitmap getCircleBitmap(Bitmap bitmap) {
+        final Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
+                bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        final Canvas canvas = new Canvas(output);
+
+        final int color = Color.RED;
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        final RectF rectF = new RectF(rect);
+
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(color);
+        canvas.drawOval(rectF, paint);
+
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+
+        bitmap.recycle();
+
+        return output;
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.notification:
+                showNotification();
+
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void showNotification() {
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        Notification notification = new Notification(R.drawable.avatar1, notificationtitle, System.currentTimeMillis());
+
+        Intent notifintent = new Intent(this, NotiFicationActivity.class);
+
+        PendingIntent pending = PendingIntent.getActivity(getApplicationContext(), 0, notifintent, 0);
+        notification.setLatestEventInfo(getApplicationContext(), subject, body, pending);
+        mNotificationManager.notify(0, notification);
+
+
+    }
 }

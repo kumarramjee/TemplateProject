@@ -1,0 +1,31 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#542154"
+    tools:context="riocatlog.mobimedia.com.templaterioproject.ui.ui.NotiFicationActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imageview"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/avatar1"
+            android:layout_alignParentLeft="true"
+            />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textnotification"
+        android:textColor="#ffffff"
+        android:layout_margin="10dp"
+        android:layout_toRightOf="@+id/imageview"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+</RelativeLayout>

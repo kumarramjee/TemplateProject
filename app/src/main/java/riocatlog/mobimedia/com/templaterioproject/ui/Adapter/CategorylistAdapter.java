@@ -61,14 +61,23 @@ public class CategorylistAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         Categories mcategories = (Categories) getItem(position);
-        holder.categoriesid.setText(mcategories.categoriesid);
 
+        holder.categoriesid.setText(mcategories.categoriesid);
         holder.categoryname.setText(mcategories.categoryname);
 
         holder.categorynamearebic.setText(mcategories.categorynamearebic);
 
         holder.categoryposition.setText(mcategories.categoryposition);
-        holder.is_active.setText(mcategories.is_active);
+        String y = "Yes";
+        String n = "NO";
+        if ((mcategories.is_active).equals("1")) {
+            holder.is_active.setText(y);
+
+        } else {
+            holder.is_active.setText(n);
+
+        }
+
 
         return convertView;
 
