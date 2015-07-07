@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -54,6 +55,7 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
     ExpandableListView expListView;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;
+    Bitmap bm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,8 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
         catadapter = new CategorylistAdapter(CatlogRioMain.this, catitems);
         categorylist.setAdapter(catadapter);
         prepareListData();
+
+
         notification.setOnClickListener(this);
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
         expListView.setAdapter(listAdapter);
@@ -234,6 +238,7 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
     private void showNotification() {
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         Notification notification = new Notification(R.drawable.avatar1, notificationtitle, System.currentTimeMillis());
+
 
         Intent notifintent = new Intent(this, NotiFicationActivity.class);
 
