@@ -11,7 +11,7 @@ import riocatlog.mobimedia.com.templaterioproject.R;
 
 public class SplashScreen extends Activity {
 
-    private static final int TIME = 4 * 1000;// 4 seconds
+    private static final int TIME = 1 * 1000;// 1 seconds
 
 
     @Override

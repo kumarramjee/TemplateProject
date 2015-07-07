@@ -15,7 +15,9 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,10 +27,12 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import riocatlog.mobimedia.com.templaterioproject.R;
 import riocatlog.mobimedia.com.templaterioproject.ui.Adapter.CategorylistAdapter;
+import riocatlog.mobimedia.com.templaterioproject.ui.Adapter.ExpandableListAdapter;
 import riocatlog.mobimedia.com.templaterioproject.ui.model.Categories;
 import riocatlog.mobimedia.com.templaterioproject.ui.ui.NotiFicationActivity;
 
@@ -46,6 +50,10 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
     private String notificationtitle = "Rio Catlog";
     private String subject = "Rio Catlog Update";
     private String body = "MobiMedia is a mobile led digital solutions organization. Our focus is empowerment, enhancement and enrichment of consumer experience with a brand. To achieve this goal, our offerings are divided into Product Platforms and Bespoke Consumer Engagement Applications Services. Though we develop products, we believe in delivering them as Services to our clients. We are committed to work with our clients as partners and help them achieve their business goals.";
+    ExpandableListAdapter listAdapter;
+    ExpandableListView expListView;
+    List<String> listDataHeader;
+    HashMap<String, List<String>> listDataChild;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +65,23 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
         catitems = ReadJsonFromExternal(jsonstring);
         catadapter = new CategorylistAdapter(CatlogRioMain.this, catitems);
         categorylist.setAdapter(catadapter);
-
+        prepareListData();
         notification.setOnClickListener(this);
+        listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+        expListView.setAdapter(listAdapter);
+    }
+
+    private void prepareListData() {
+        listDataHeader = new ArrayList<String>();
+        listDataChild = new HashMap<String, List<String>>();
+        listDataHeader.add("Rio Catlog Product");
+        List<String> rioproduct = new ArrayList<String>();
+        rioproduct.add("Product Name");
+        rioproduct.add("Product Id");
+        rioproduct.add("Product Categories");
+        rioproduct.add("Product Data");
+        rioproduct.add("Product List");
+        listDataChild.put(listDataHeader.get(0), rioproduct);
     }
 
     public String loadJSONFromAsset() {
@@ -84,6 +107,7 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
         mediaurltext = (TextView) findViewById(R.id.mediaurl);
         categorylist = (ListView) findViewById(R.id.categorylist);
         notification = (TextView) findViewById(R.id.notification);
+        expListView = (ExpandableListView) findViewById(R.id.expendiblelistview);
     }
 
     private List<Categories> ReadJsonFromExternal(String str) {
@@ -120,8 +144,8 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
                 catitem.categoryposition = cat_position;
                 catitem.is_active = is_active;
                 categorylist.add(catitem);
-                //   JSONArray productlistarray=jsonfirstarrayobject.getJSONArray("productlist");
-              /*  for(int j=0;j<productlistarray.length();j++)
+              /*  JSONArray productlistarray=jsonfirstarrayobject.getJSONArray("productlist");
+                for(int j=0;j<productlistarray.length();j++)
                 {
                     //this is second internal array
                     JSONObject jproductlistarray=productlistarray.getJSONObject(j);
@@ -144,10 +168,9 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
 
 
 
-                    Log.i("Cat Log","INternal Array items=="+entity_id+","+entity_type_id+","+created_at+","+updated_at);
+                    Log.i("Cat Log", "INternal Array items==" + entity_id + "," + entity_type_id + "," + created_at + "," + updated_at);
                 }
 */
-
                 //Log.i("Catlog Rio Main", "values==:" + category_name + "," + category_name_arabic + "," + category_id + "," + is_active + "," + cat_position);
 
                 //Second internal array starts from here
@@ -172,6 +195,7 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
         categoryid.setText("Category Id :" + rootid);
 
     }
+
     private Bitmap getCircleBitmap(Bitmap bitmap) {
         final Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
                 bitmap.getHeight(), Bitmap.Config.ARGB_8888);
