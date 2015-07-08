@@ -81,7 +81,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/categorylist"
         android:layout_margin="5dp"
-        android:background="#80000000"></ExpandableListView>
+        android:background="#80000000"
+        android:visibility="gone"
+
+        ></ExpandableListView>
 
     <ImageView
         android:id="@+id/footer"

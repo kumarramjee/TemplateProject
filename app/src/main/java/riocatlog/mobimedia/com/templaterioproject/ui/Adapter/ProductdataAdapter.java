@@ -50,7 +50,6 @@ public class ProductdataAdapter extends BaseAdapter {
         if (convertView == null) {
             holder = new ViewHolder();
             convertView = inflater.inflate(R.layout.productdataitem, null);
-            holder = new ViewHolder();
             holder.entityid = (TextView) convertView.findViewById(R.id.entityid);
             holder.entityname = (TextView) convertView.findViewById(R.id.entityname);
             convertView.setTag(holder);

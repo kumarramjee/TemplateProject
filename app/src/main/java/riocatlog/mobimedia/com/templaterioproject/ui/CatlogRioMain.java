@@ -35,8 +35,6 @@ import riocatlog.mobimedia.com.templaterioproject.R;
 import riocatlog.mobimedia.com.templaterioproject.ui.Adapter.CategorylistAdapter;
 import riocatlog.mobimedia.com.templaterioproject.ui.Adapter.ExpandableListAdapter;
 import riocatlog.mobimedia.com.templaterioproject.ui.model.MainCategories;
-import riocatlog.mobimedia.com.templaterioproject.ui.model.Images;
-import riocatlog.mobimedia.com.templaterioproject.ui.model.ProductData;
 import riocatlog.mobimedia.com.templaterioproject.ui.ui.NextActivity;
 import riocatlog.mobimedia.com.templaterioproject.ui.ui.NotiFicationActivity;
 
@@ -47,9 +45,10 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
     private TextView categoryid;
     private TextView mediaurltext;
     private List<MainCategories> catitems;
+    Context mcontext = this;
     private ListView categorylist;
     private CategorylistAdapter catadapter;
-    private String jsonstring;
+    private String jsonstring = "";
     private TextView notification;
     private String notificationtitle = "Rio Catlog";
     private String subject = "Rio Catlog Update";
@@ -67,20 +66,23 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
         setContentView(R.layout.activity_catlog_rio_main);
         SetupUI();
         jsonstring = loadJSONFromAsset();
+
         catitems = new ArrayList<MainCategories>();
         catitems = ReadJsonFromExternal(jsonstring);
+
         Log.i("Category Items ", "Size==" + catitems.size());
-        catadapter = new CategorylistAdapter(CatlogRioMain.this, catitems);
+
+        catadapter = new CategorylistAdapter(mcontext, catitems);
         categorylist.setAdapter(catadapter);
-        catadapter.notifyDataSetChanged();
+
         prepareListData();
 
 
-        notification.setOnClickListener(this);
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
         expListView.setAdapter(listAdapter);
 
         footer.setOnClickListener(this);
+        notification.setOnClickListener(this);
     }
 
     private void prepareListData() {
@@ -237,17 +239,13 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
         final Paint paint = new Paint();
         final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
         final RectF rectF = new RectF(rect);
-
         paint.setAntiAlias(true);
         canvas.drawARGB(0, 0, 0, 0);
         paint.setColor(color);
         canvas.drawOval(rectF, paint);
-
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         canvas.drawBitmap(bitmap, rect, rect, paint);
-
         bitmap.recycle();
-
         return output;
     }
 
@@ -270,10 +268,7 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
     private void showNotification() {
         NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         Notification notification = new Notification(R.drawable.avatar1, notificationtitle, System.currentTimeMillis());
-
-
         Intent notifintent = new Intent(this, NotiFicationActivity.class);
-
         PendingIntent pending = PendingIntent.getActivity(getApplicationContext(), 0, notifintent, 0);
         notification.setLatestEventInfo(getApplicationContext(), subject, body, pending);
         mNotificationManager.notify(0, notification);

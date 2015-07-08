@@ -28,7 +28,7 @@ public class CategorylistAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        Log.i("Category","Adapter=="+mCategories.size());
+        Log.i("Category", "Adapter==" + mCategories.size());
         return mCategories.size();
     }
 
@@ -46,11 +46,10 @@ public class CategorylistAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
 
-        LayoutInflater inflater = (LayoutInflater) mcontext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
             holder = new ViewHolder();
+            LayoutInflater inflater = (LayoutInflater) mcontext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.categorylistitem, null);
-            holder = new ViewHolder();
             holder.categoriesid = (TextView) convertView.findViewById(R.id.catidvalues);
             holder.categoryname = (TextView) convertView.findViewById(R.id.catnamevalues);
             holder.categorynamearebic = (TextView) convertView.findViewById(R.id.catnamearebicvalues);
@@ -61,7 +60,6 @@ public class CategorylistAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         MainCategories mcategories = (MainCategories) getItem(position);
-
         holder.categoriesid.setText(mcategories.categoriesid);
         holder.categoryname.setText(mcategories.categoryname);
         holder.categorynamearebic.setText(mcategories.categorynamearebic);
@@ -75,6 +73,7 @@ public class CategorylistAdapter extends BaseAdapter {
         }
         return convertView;
     }
+
     public class ViewHolder {
         public TextView categoriesid;
         public TextView categoryname;

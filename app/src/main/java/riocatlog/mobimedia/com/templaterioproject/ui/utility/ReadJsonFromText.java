@@ -1,53 +1,26 @@
 package riocatlog.mobimedia.com.templaterioproject.ui.utility;
 
 import android.content.Context;
-import android.content.res.AssetManager;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import riocatlog.mobimedia.com.templaterioproject.ui.model.Images;
 import riocatlog.mobimedia.com.templaterioproject.ui.model.MainCategories;
 import riocatlog.mobimedia.com.templaterioproject.ui.model.ProductData;
 
 /**
- * Created by ram on 7/7/15.
+ * Created by ram on 8/7/15.
  */
 public class ReadJsonFromText {
-Context mContext;
 
-    /*public String loadJSONFromAsset() {
-        String json = null;
-        try {
-            byte[] buffer;
-            try (InputStream is = mContext.getAssets().open("jsontxt.txt")) {
-                int size = is.available();
-                buffer = new byte[size];
-                is.read(buffer);
-                is.close();
-            }
-            json = new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
-    }
-*/
-
-
-
+    Context mContext;
     public List<ProductData> ReadJsonFromExternal(String str) {
         List<ProductData> mListProductdata = new ArrayList<ProductData>();
-
         List<MainCategories> categorylist = new ArrayList<MainCategories>();
-
         try {
             MainCategories catitem = new MainCategories();
             JSONObject jsonObj = new JSONObject(str);
@@ -55,12 +28,9 @@ Context mContext;
             String rootname = jsonObj.getString("rootcategory_name");
             String rootid = jsonObj.getString("rootcategory_id");
             String mediaurlname = jsonObj.getString("mediaurl");
-
-
-             JSONObject jsonfirst = jsonObj.getJSONObject("categories");
+            JSONObject jsonfirst = jsonObj.getJSONObject("categories");
             JSONArray childcategory = jsonfirst.getJSONArray("childcategories");
-
-            for (int i = 0; i < childcategory.length(); i++) {
+           for (int i = 0; i < childcategory.length(); i++) {
                 Log.i("Length ", "of Child ==" + childcategory.length());
                 JSONObject jsonfirstarrayobject = childcategory.getJSONObject(i);
                 String category_name = jsonfirstarrayobject.getString("category_name");
@@ -108,7 +78,6 @@ Context mContext;
                     String tier_price_changed = jproductlistarray.getString("tier_price_changed");
 
 
-
                     mListProductdata.add(productdata);
 
                     Log.i("Cat", "Main Rio Product==" + mListProductdata.size());
@@ -126,3 +95,4 @@ Context mContext;
     }
 
 }
+

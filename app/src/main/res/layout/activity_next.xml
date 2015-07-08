@@ -8,7 +8,9 @@
     <ListView
         android:id="@+id/listeditem"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="250dp"
+        android:layout_alignParentTop="true"
+        android:background="#d4d4d4"></ListView>
 
     <View
         android:id="@+id/listeditemview"
@@ -19,6 +21,8 @@
     <ListView
         android:id="@+id/prodctlist"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/listeditemview"></ListView>
+        android:layout_height="300dp"
+        android:layout_alignParentBottom="true"
+        android:background="#542154"
+        android:layout_below="@+id/listeditem"></ListView>
 </RelativeLayout>

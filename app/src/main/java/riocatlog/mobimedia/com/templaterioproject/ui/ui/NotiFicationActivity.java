@@ -18,29 +18,26 @@ import android.widget.ImageView;
 import riocatlog.mobimedia.com.templaterioproject.R;
 
 public class NotiFicationActivity extends Activity {
-ImageView imageview;
+    ImageView imageview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_noti_fication);
         SetUpUi();
-
         Bitmap bm = BitmapFactory.decodeResource(getResources(),
                 R.drawable.avatar4);
-
-        // set circle bitmap
-      imageview.setImageBitmap(getCircleBitmap(bm));
-
+        imageview.setImageBitmap(getCircleBitmap(bm));
     }
 
     private void SetUpUi() {
-        imageview=(ImageView)findViewById(R.id.imageview);
+        imageview = (ImageView) findViewById(R.id.imageview);
     }
+
     private Bitmap getCircleBitmap(Bitmap bitmap) {
         final Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
                 bitmap.getHeight(), Bitmap.Config.ARGB_8888);
         final Canvas canvas = new Canvas(output);
-
         final int color = Color.RED;
         final Paint paint = new Paint();
         final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
@@ -58,6 +55,7 @@ ImageView imageview;
 
         return output;
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

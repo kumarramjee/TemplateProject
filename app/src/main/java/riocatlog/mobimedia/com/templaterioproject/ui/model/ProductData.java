@@ -3,7 +3,7 @@ package riocatlog.mobimedia.com.templaterioproject.ui.model;
 /**
  * Created by ram on 7/7/15.
  */
-public class ProductData {
+public class ProductData extends MainCategories{
     public int entity_id;
     public String entity_type_id;
     public String attribute_set_id;
