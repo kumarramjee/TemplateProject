@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:gravity="center"
-        android:text="DataList"
+        android:text="Media Galary Detail"
         android:layout_marginTop="2dp"
         android:textColor="#ffffff"
         android:textSize="20sp" />
@@ -37,7 +37,7 @@
         android:layout_below="@+id/listeditemview"
         android:gravity="center"
         android:layout_marginTop="2dp"
-        android:text="ProductList"
+        android:text="Product Detail"
         android:textColor="#ffffff"
         android:textSize="20sp" />
 
