@@ -127,9 +127,8 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
 
     private List<MainCategories> ReadJsonFromExternal(String str) {
         List<MainCategories> categorylist = new ArrayList<MainCategories>();
-
+        MainCategories catitem;
         try {
-            MainCategories catitem = new MainCategories();
             JSONObject jsonObj = new JSONObject(str);
             String timestanp = jsonObj.getString("timestamp");
             String rootname = jsonObj.getString("rootcategory_name");
@@ -138,79 +137,15 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
             SetJsonParseValuetToTextView(timestanp, rootname, rootid);
             JSONObject jsonfirst = jsonObj.getJSONObject("categories");
             JSONArray childcategory = jsonfirst.getJSONArray("childcategories");
-
             for (int i = 0; i < childcategory.length(); i++) {
-                Log.i("Length ", "of Child ==" + childcategory.length());
+                catitem = new MainCategories();
                 JSONObject jsonfirstarrayobject = childcategory.getJSONObject(i);
-                String category_name = jsonfirstarrayobject.getString("category_name");
-                String category_name_arabic = jsonfirstarrayobject.getString("category_name_arabic");
-                String category_id = jsonfirstarrayobject.getString("category_id");
-                String is_active = jsonfirstarrayobject.getString("is_active");
-                String cat_position = jsonfirstarrayobject.getString("cat_position");
-                catitem.categoriesid = category_id;
-                catitem.categoryname = category_name;
-                catitem.categorynamearebic = category_name_arabic;
-                catitem.categoryposition = cat_position;
-                catitem.is_active = is_active;
+                catitem.categoriesid = jsonfirstarrayobject.getString("category_id");
+                catitem.categoryname = jsonfirstarrayobject.getString("category_name");
+                catitem.categorynamearebic = jsonfirstarrayobject.getString("category_name_arabic");
+                catitem.categoryposition = jsonfirstarrayobject.getString("cat_position");
+                catitem.is_active = jsonfirstarrayobject.getString("is_active");
                 categorylist.add(catitem);
-
-               /* JSONArray productlistarray = jsonfirstarrayobject.getJSONArray("productlist");
-                ProductData productdata = new ProductData();
-
-                List<ProductData> mListProductdata = new ArrayList<ProductData>();
-
-                for (int j = 0; j < productlistarray.length(); j++) {
-                    //this is second internal array
-                    JSONObject jproductlistarray = productlistarray.getJSONObject(j);
-
-                    productdata.entity_id = jproductlistarray.getInt("entity_id");
-                    productdata.entity_type_id = jproductlistarray.getString("entity_type_id");
-                    productdata.attribute_set_id = jproductlistarray.getString("attribute_set_id");
-                    productdata.type_id = jproductlistarray.getString("type_id");
-                    productdata.sku = jproductlistarray.getString("sku");
-                    productdata.has_options = jproductlistarray.getString("has_options");
-                    productdata.required_options = jproductlistarray.getString("required_options");
-                    productdata.created_at = jproductlistarray.getString("created_at");
-                    productdata.updated_at = jproductlistarray.getString("updated_at");
-                    productdata.name = jproductlistarray.getString("name");
-                    productdata.image = jproductlistarray.getString("image");
-                    productdata.small_image = jproductlistarray.getString("small_image");
-                    productdata.thumbnail = jproductlistarray.getString("thumbnail");
-                    productdata.url_key = jproductlistarray.getString("url_key");
-                    productdata.url_path = jproductlistarray.getString("url_path");
-                    productdata.options_container = jproductlistarray.getString("options_container");
-                    productdata.image_label = jproductlistarray.getString("image_label");
-
-
-                    String prod_position = jproductlistarray.getString("prod_position");
-                    String is_in_stock = jproductlistarray.getString("is_in_stock");
-                    String is_salable = jproductlistarray.getString("is_salable");
-                    String tier_price_changed = jproductlistarray.getString("tier_price_changed");
-
-
-                    JSONObject mediagallary = jproductlistarray.getJSONObject("media_gallery");
-                    Images imagesgalary = new Images();
-                    List<Images> mlistImages = new ArrayList<Images>();
-                    JSONArray imagesobj = mediagallary.getJSONArray("images");
-                    for (int p = 0; p < imagesobj.length(); p++) {
-                        JSONObject jobjimages = imagesobj.getJSONObject(p);
-                        imagesgalary.valueid = jobjimages.getInt("value_id");
-                        imagesgalary.file = jobjimages.getString("file");
-                        imagesgalary.label = jobjimages.getString("label");
-                        imagesgalary.position = jobjimages.getString("position");
-                        imagesgalary.disabled = jobjimages.getString("position");
-                        imagesgalary.label_default = jobjimages.getString("label_default");
-                        imagesgalary.position_default = jobjimages.getString("position_default");
-                        imagesgalary.disabled_default = jobjimages.getString("disabled_default");
-                        mlistImages.add(imagesgalary);
-
-                    }
-
-
-                    mListProductdata.add(productdata);
-
-                    Log.i("Cat", "Main Rio Product==" + mListProductdata.size());
-                }*/
 
             }
 

@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import riocatlog.mobimedia.com.templaterioproject.ui.model.ChildCategory;
 import riocatlog.mobimedia.com.templaterioproject.ui.model.MainCategories;
 import riocatlog.mobimedia.com.templaterioproject.ui.model.ProductData;
 
@@ -16,82 +17,50 @@ import riocatlog.mobimedia.com.templaterioproject.ui.model.ProductData;
  * Created by ram on 8/7/15.
  */
 public class ReadJsonFromText {
-
-    Context mContext;
     public List<ProductData> ReadJsonFromExternal(String str) {
         List<ProductData> mListProductdata = new ArrayList<ProductData>();
-        List<MainCategories> categorylist = new ArrayList<MainCategories>();
+        ProductData productdata;
         try {
-            MainCategories catitem = new MainCategories();
             JSONObject jsonObj = new JSONObject(str);
-            String timestanp = jsonObj.getString("timestamp");
-            String rootname = jsonObj.getString("rootcategory_name");
-            String rootid = jsonObj.getString("rootcategory_id");
-            String mediaurlname = jsonObj.getString("mediaurl");
             JSONObject jsonfirst = jsonObj.getJSONObject("categories");
             JSONArray childcategory = jsonfirst.getJSONArray("childcategories");
-           for (int i = 0; i < childcategory.length(); i++) {
-                Log.i("Length ", "of Child ==" + childcategory.length());
+            for (int i = 0; i < childcategory.length(); i++) {
                 JSONObject jsonfirstarrayobject = childcategory.getJSONObject(i);
-                String category_name = jsonfirstarrayobject.getString("category_name");
-                String category_name_arabic = jsonfirstarrayobject.getString("category_name_arabic");
-                String category_id = jsonfirstarrayobject.getString("category_id");
-                String is_active = jsonfirstarrayobject.getString("is_active");
-                String cat_position = jsonfirstarrayobject.getString("cat_position");
-                catitem.categoriesid = category_id;
-                catitem.categoryname = category_name;
-                catitem.categorynamearebic = category_name_arabic;
-                catitem.categoryposition = cat_position;
-                catitem.is_active = is_active;
-                categorylist.add(catitem);
-
                 JSONArray productlistarray = jsonfirstarrayobject.getJSONArray("productlist");
-                ProductData productdata = new ProductData();
-
-
                 for (int j = 0; j < productlistarray.length(); j++) {
-                    //this is second internal array
+                    productdata = new ProductData();
                     JSONObject jproductlistarray = productlistarray.getJSONObject(j);
-
-                    productdata.entity_id = jproductlistarray.getInt("entity_id");
-                    productdata.entity_type_id = jproductlistarray.getString("entity_type_id");
-                    productdata.attribute_set_id = jproductlistarray.getString("attribute_set_id");
-                    productdata.type_id = jproductlistarray.getString("type_id");
-                    productdata.sku = jproductlistarray.getString("sku");
-                    productdata.has_options = jproductlistarray.getString("has_options");
-                    productdata.required_options = jproductlistarray.getString("required_options");
-                    productdata.created_at = jproductlistarray.getString("created_at");
-                    productdata.updated_at = jproductlistarray.getString("updated_at");
-                    productdata.name = jproductlistarray.getString("name");
-                    productdata.image = jproductlistarray.getString("image");
-                    productdata.small_image = jproductlistarray.getString("small_image");
-                    productdata.thumbnail = jproductlistarray.getString("thumbnail");
-                    productdata.url_key = jproductlistarray.getString("url_key");
-                    productdata.url_path = jproductlistarray.getString("url_path");
-                    productdata.options_container = jproductlistarray.getString("options_container");
-                    productdata.image_label = jproductlistarray.getString("image_label");
-
-
-                    String prod_position = jproductlistarray.getString("prod_position");
-                    String is_in_stock = jproductlistarray.getString("is_in_stock");
-                    String is_salable = jproductlistarray.getString("is_salable");
-                    String tier_price_changed = jproductlistarray.getString("tier_price_changed");
-
-
+                    JSONObject jobject = jproductlistarray.getJSONObject("productdata");
+                    productdata.entity_id = jobject.getString("entity_id");
+                    productdata.entity_type_id = jobject.getString("entity_type_id");
+                    productdata.type_id = jobject.getString("type_id");
+                    productdata.price = jobject.getString("price");
+                    productdata.visibility=jobject.getString("visibility");
                     mListProductdata.add(productdata);
+                    /*
+                    productdata.sku = jobject.getString("sku");
+                    productdata.has_options = jobject.getString("has_options");
+                    productdata.required_options = jobject.getString("required_options");
+                    productdata.created_at = jobject.getString("created_at");
+                    productdata.updated_at = jobject.getString("updated_at");
+                    productdata.name = jobject.getString("name");
+                    productdata.image = jobject.getString("image");
+                    productdata.small_image = jobject.getString("small_image");
+                    productdata.thumbnail = jobject.getString("thumbnail");
+                    productdata.url_key = jobject.getString("url_key");
+                    productdata.url_path = jobject.getString("url_path");
+                    productdata.options_container = jobject.getString("options_container");
+                    productdata.image_label = jobject.getString("image_label");*/
 
-                    Log.i("Cat", "Main Rio Product==" + mListProductdata.size());
+
                 }
 
             }
 
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return mListProductdata;
-
     }
 
 }

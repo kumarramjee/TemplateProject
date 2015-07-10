@@ -3,24 +3,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#80000000"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/entityid"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
         android:layout_margin="5dp"
-        android:background="#80000000"
-        android:text="Hi"
+        android:text="Mobimedia"
         android:textColor="#ffffff"
-        android:textSize="18sp" />
+        android:textSize="15sp" />
+
     <TextView
         android:id="@+id/entityname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
         android:layout_margin="5dp"
-        android:background="#80000000"
-        android:text="Hi"
+        android:gravity="center"
+        android:text="Technology"
         android:textColor="#ffffff"
-        android:textSize="18sp" />
+        android:textSize="15sp" />
+
+
+    <TextView
+        android:id="@+id/type_id"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:text="Technology"
+        android:textColor="#ffffff"
+        android:textSize="15sp" />
+
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:text="Technology"
+        android:textColor="#ffffff"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/visibility"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:text="Technology"
+        android:textColor="#ffffff"
+        android:textSize="15sp" />
+
 </LinearLayout>

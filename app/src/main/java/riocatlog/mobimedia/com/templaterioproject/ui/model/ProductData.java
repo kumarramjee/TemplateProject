@@ -3,10 +3,13 @@ package riocatlog.mobimedia.com.templaterioproject.ui.model;
 /**
  * Created by ram on 7/7/15.
  */
-public class ProductData extends MainCategories{
-    public int entity_id;
+public class ProductData extends MainCategories {
+    public String entity_id;
     public String entity_type_id;
-    public String attribute_set_id;
+    public String type_id;
+    public String price;
+    public String visibility;
+   /* public String attribute_set_id;
     public String type_id;
     public String sku;
     public String has_options;
@@ -42,7 +45,7 @@ public class ProductData extends MainCategories{
     public String stock_item;
     public String is_in_stock;
     public String is_salable;
-    public String prod_position;
+    public String prod_position;*/
 
 
 }

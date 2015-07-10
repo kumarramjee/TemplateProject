@@ -5,24 +5,50 @@
 
     tools:context="riocatlog.mobimedia.com.templaterioproject.ui.ui.NextActivity">
 
+    <TextView
+        android:id="@+id/textlistdata"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:text="DataList"
+        android:layout_marginTop="2dp"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
     <ListView
         android:id="@+id/listeditem"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_alignParentTop="true"
-        android:background="#d4d4d4"></ListView>
+        android:layout_below="@+id/textlistdata"
+        android:background="#542154"></ListView>
 
     <View
         android:id="@+id/listeditemview"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="#80d3d3d3" />
+        android:layout_below="@+id/listeditem"
+        android:background="#ffffff" />
+
+    <TextView
+        android:id="@+id/prodctlisttext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listeditemview"
+        android:gravity="center"
+        android:layout_marginTop="2dp"
+        android:text="ProductList"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
 
     <ListView
         android:id="@+id/prodctlist"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#542154"
-        android:layout_below="@+id/listeditem"></ListView>
+        android:layout_below="@+id/prodctlisttext"
+        android:background="#542154"></ListView>
+
+
 </RelativeLayout>
