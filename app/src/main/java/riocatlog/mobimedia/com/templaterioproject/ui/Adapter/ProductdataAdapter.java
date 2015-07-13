@@ -59,11 +59,9 @@ public class ProductdataAdapter extends BaseAdapter {
             holder.price = (TextView) convertView.findViewById(R.id.price);
             holder.visibility = (TextView) convertView.findViewById(R.id.visibility);
             holder.visibilitytext = (TextView) convertView.findViewById(R.id.visibilitytext);
-
             holder.descritiponmtxt = (TextView) convertView.findViewById(R.id.descritiponmtxt);
             holder.descritiponmtxt.setText("Description");
             holder.description = (TextView) convertView.findViewById(R.id.description);
-
 
             convertView.setTag(holder);
         } else {
