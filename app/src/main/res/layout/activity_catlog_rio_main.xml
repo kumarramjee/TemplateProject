@@ -62,8 +62,8 @@
             android:id="@+id/textshow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
             android:layout_alignParentRight="true"
+            android:layout_margin="16dp"
             android:text="@string/hello_world"
             android:textColor="#ffffff" />
     </RelativeLayout>
@@ -88,8 +88,8 @@
             android:id="@+id/rootcatname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
             android:layout_alignParentRight="true"
+            android:layout_margin="16dp"
             android:text="@string/hello_world"
             android:textColor="#ffffff" />
     </RelativeLayout>
@@ -116,24 +116,13 @@
         android:id="@+id/notification"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:layout_below="@+id/expendiblelistview"
+        android:layout_below="@+id/categorylist"
         android:layout_margin="5dp"
         android:background="#80000000"
         android:gravity="center"
         android:text="Get Notification"
         android:textColor="#ffffff"
         android:textSize="15sp" />
-
-    <ExpandableListView
-        android:id="@+id/expendiblelistview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/categorylist"
-        android:layout_margin="5dp"
-        android:background="#80000000"
-        android:visibility="gone"
-
-        ></ExpandableListView>
 
     <ImageView
         android:id="@+id/footer"

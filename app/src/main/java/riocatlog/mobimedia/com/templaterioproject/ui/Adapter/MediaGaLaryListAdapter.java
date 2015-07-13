@@ -64,9 +64,9 @@ public class MediaGaLaryListAdapter extends BaseAdapter {
             holder.typeiidtext.setText("Label_Default");
             holder.visibilitytext = (TextView) convertView.findViewById(R.id.visibilitytext);
             holder.visibilitytext.setText("Position_default");
-            holder.descritiponmtxt=(TextView)convertView.findViewById(R.id.descritiponmtxt);
+            holder.descritiponmtxt = (TextView) convertView.findViewById(R.id.descritiponmtxt);
             holder.descritiponmtxt.setVisibility(View.INVISIBLE);
-            holder.description=(TextView)convertView.findViewById(R.id.description);
+            holder.description = (TextView) convertView.findViewById(R.id.description);
             holder.description.setVisibility(View.INVISIBLE);
 
             convertView.setTag(holder);

@@ -17,7 +17,6 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -33,7 +32,6 @@ import java.util.List;
 
 import riocatlog.mobimedia.com.templaterioproject.R;
 import riocatlog.mobimedia.com.templaterioproject.ui.Adapter.CategorylistAdapter;
-import riocatlog.mobimedia.com.templaterioproject.ui.Adapter.ExpandableListAdapter;
 import riocatlog.mobimedia.com.templaterioproject.ui.model.MainCategories;
 import riocatlog.mobimedia.com.templaterioproject.ui.ui.NextActivity;
 import riocatlog.mobimedia.com.templaterioproject.ui.ui.NotiFicationActivity;
@@ -53,8 +51,6 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
     private String notificationtitle = "Rio Catlog";
     private String subject = "Rio Catlog Update";
     private String body = "MobiMedia is a mobile led digital solutions organization. Our focus is empowerment, enhancement and enrichment of consumer experience with a brand. To achieve this goal, our offerings are divided into Product Platforms and Bespoke Consumer Engagement Applications Services. Though we develop products, we believe in delivering them as Services to our clients. We are committed to work with our clients as partners and help them achieve their business goals.";
-    private ExpandableListAdapter listAdapter;
-    private ExpandableListView expListView;
     private List<String> listDataHeader;
     private HashMap<String, List<String>> listDataChild;
     private Bitmap bm;
@@ -77,9 +73,6 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
 
         prepareListData();
 
-
-        listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
-        expListView.setAdapter(listAdapter);
 
         footer.setOnClickListener(this);
         notification.setOnClickListener(this);
@@ -121,7 +114,6 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
         mediaurltext = (TextView) findViewById(R.id.mediaurl);
         categorylist = (ListView) findViewById(R.id.categorylist);
         notification = (TextView) findViewById(R.id.notification);
-        expListView = (ExpandableListView) findViewById(R.id.expendiblelistview);
         footer = (ImageView) findViewById(R.id.footer);
     }
 
