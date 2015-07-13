@@ -52,12 +52,15 @@ public class ProductdataAdapter extends BaseAdapter {
         if (convertView == null) {
             holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.productdataitem, null);
+            convertView = inflater.inflate(R.layout.productdataitemliste, null);
             holder.entityid = (TextView) convertView.findViewById(R.id.entityid);
             holder.entityidset = (TextView) convertView.findViewById(R.id.entityname);
             holder.type_id = (TextView) convertView.findViewById(R.id.type_id);
             holder.price = (TextView) convertView.findViewById(R.id.price);
             holder.visibility = (TextView) convertView.findViewById(R.id.visibility);
+            holder.descritiponmtxt=(TextView)convertView.findViewById(R.id.descritiponmtxt);
+            holder.descritiponmtxt.setText("Description");
+            holder.description=(TextView)convertView.findViewById(R.id.description);
 
             convertView.setTag(holder);
         } else {
@@ -70,6 +73,7 @@ public class ProductdataAdapter extends BaseAdapter {
         holder.type_id.setText(mproductdata.type_id);
         holder.price.setText(mproductdata.price);
         holder.visibility.setText(mproductdata.visibility);
+        holder.description.setText(mproductdata.description);
         return convertView;
     }
 
@@ -80,6 +84,8 @@ public class ProductdataAdapter extends BaseAdapter {
         TextView price;
         TextView type_id;
         TextView visibility;
+        TextView descritiponmtxt;
+        TextView description;
     }
 
 }

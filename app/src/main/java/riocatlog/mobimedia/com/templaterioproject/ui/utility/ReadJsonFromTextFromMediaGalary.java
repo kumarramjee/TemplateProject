@@ -32,9 +32,9 @@ public class ReadJsonFromTextFromMediaGalary {
                         JSONObject jimageobj = imagesarray.getJSONObject(k);
                         mMediaGalaryList.value_id = jimageobj.getString("value_id");
                         mMediaGalaryList.file = jimageobj.getString("file");
-                        mMediaGalaryList.label = jimageobj.getString("label");
+                        mMediaGalaryList.label = jimageobj.getString("label_default");
                         mMediaGalaryList.position = jimageobj.getString("position");
-                        mMediaGalaryList.disabled = jimageobj.getString("disabled");
+                        mMediaGalaryList.disabled = jimageobj.getString("position_default");
                         mMediaGalaryList.label_default = jimageobj.getString("label_default");
                         mMediaGalaryList.position_default = jimageobj.getString("position_default");
                         mMediaGalaryList.disabled_default = jimageobj.getString("disabled_default");

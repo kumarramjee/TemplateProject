@@ -18,38 +18,87 @@
         android:textSize="25sp" />
 
 
-    <TextView
-        android:id="@+id/categoryid"
+    <RelativeLayout
+        android:id="@+id/catgrryid"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/riocatlogtext"
-        android:layout_margin="16dp"
-        android:text="@string/hello_world"
-        android:textColor="#ffffff" />
+        android:layout_height="56dp"
+        android:layout_below="@+id/riocatlogtext">
 
-    <TextView
-        android:id="@+id/textshow"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/categoryid"
-        android:layout_margin="16dp"
-        android:text="@string/hello_world"
-        android:textColor="#ffffff" />
+        <TextView
+            android:id="@+id/cateid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="16dp"
+            android:text="Category Id"
+            android:textColor="#ffffff" />
 
-    <TextView
-        android:id="@+id/rootcatname"
+        <TextView
+            android:id="@+id/categoryid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="16dp"
+            android:text="@string/hello_world"
+            android:textColor="#ffffff" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/timestamppid"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_below="@+id/catgrryid">
+
+        <TextView
+            android:id="@+id/timestampp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="16dp"
+            android:text="Timestamp"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/textshow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_alignParentRight="true"
+            android:text="@string/hello_world"
+            android:textColor="#ffffff" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/catgrryname"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textshow"
-        android:layout_margin="16dp"
-        android:text="@string/hello_world"
-        android:textColor="#ffffff" />
+        android:layout_height="56dp"
+
+        android:layout_below="@+id/timestamppid">
+
+        <TextView
+            android:id="@+id/catname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="16dp"
+            android:text="@string/hello_world"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/rootcatname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_alignParentRight="true"
+            android:text="@string/hello_world"
+            android:textColor="#ffffff" />
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/mediaurl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rootcatname"
+        android:layout_below="@+id/catgrryname"
         android:layout_margin="16dp"
         android:text="@string/hello_world"
         android:textColor="#ffffff"

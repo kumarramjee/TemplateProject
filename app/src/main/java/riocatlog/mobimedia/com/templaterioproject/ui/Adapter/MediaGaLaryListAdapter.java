@@ -48,12 +48,26 @@ public class MediaGaLaryListAdapter extends BaseAdapter {
         if (convertView == null) {
             holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.productdataitem, null);
+            convertView = inflater.inflate(R.layout.productdataitemliste, null);
             holder.value_id = (TextView) convertView.findViewById(R.id.entityid);
             holder.file = (TextView) convertView.findViewById(R.id.entityname);
             holder.label = (TextView) convertView.findViewById(R.id.type_id);
             holder.position = (TextView) convertView.findViewById(R.id.price);
             holder.disabled = (TextView) convertView.findViewById(R.id.visibility);
+            holder.entityidtext = (TextView) convertView.findViewById(R.id.entityidtext);
+            holder.entityidtext.setText("Value Id");
+            holder.entitynametext = (TextView) convertView.findViewById(R.id.entitynametext);
+            holder.entitynametext.setText("File");
+            holder.pricetext = (TextView) convertView.findViewById(R.id.pricetext);
+            holder.pricetext.setText("Position");
+            holder.typeiidtext = (TextView) convertView.findViewById(R.id.typeiidtext);
+            holder.typeiidtext.setText("Label_Default");
+            holder.visibilitytext = (TextView) convertView.findViewById(R.id.visibilitytext);
+            holder.visibilitytext.setText("Position_default");
+            holder.descritiponmtxt=(TextView)convertView.findViewById(R.id.descritiponmtxt);
+            holder.descritiponmtxt.setVisibility(View.INVISIBLE);
+            holder.description=(TextView)convertView.findViewById(R.id.description);
+            holder.description.setVisibility(View.INVISIBLE);
 
             convertView.setTag(holder);
         } else {
@@ -76,6 +90,13 @@ public class MediaGaLaryListAdapter extends BaseAdapter {
         TextView label;
         TextView position;
         TextView disabled;
+        TextView entityidtext;
+        TextView entitynametext;
+        TextView pricetext;
+        TextView typeiidtext;
+        TextView visibilitytext;
+        TextView descritiponmtxt;
+        TextView description;
     }
 
 }

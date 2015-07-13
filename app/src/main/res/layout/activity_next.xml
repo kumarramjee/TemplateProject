@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
+    android:background="#000000"
     tools:context="riocatlog.mobimedia.com.templaterioproject.ui.ui.NextActivity">
 
     <TextView
@@ -10,36 +11,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:layout_margin="10dp"
         android:gravity="center"
         android:text="Media Galary Detail"
-        android:layout_marginTop="2dp"
         android:textColor="#ffffff"
-        android:textSize="20sp" />
+        android:textSize="22sp" />
 
     <ListView
         android:id="@+id/listeditem"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="220dp"
         android:layout_below="@+id/textlistdata"
+        android:layout_margin="10dp"
         android:background="#542154"></ListView>
 
-    <View
-        android:id="@+id/listeditemview"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_below="@+id/listeditem"
-        android:background="#ffffff" />
+
 
     <TextView
         android:id="@+id/prodctlisttext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/listeditemview"
+        android:layout_below="@+id/listeditem"
+        android:layout_margin="10dp"
         android:gravity="center"
-        android:layout_marginTop="2dp"
         android:text="Product Detail"
         android:textColor="#ffffff"
-        android:textSize="20sp" />
+        android:textSize="22sp" />
 
 
     <ListView
@@ -48,6 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/prodctlisttext"
+        android:layout_margin="10dp"
         android:background="#542154"></ListView>
 
 

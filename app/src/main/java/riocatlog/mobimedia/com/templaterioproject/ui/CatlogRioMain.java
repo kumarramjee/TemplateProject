@@ -159,9 +159,9 @@ public class CatlogRioMain extends Activity implements TextView.OnClickListener 
     }
 
     private void SetJsonParseValuetToTextView(String timestanp, String rootname, String rootid) {
-        textshow.setText("Timestamp :" + timestanp);
-        rootcatname.setText("Category Name :" + rootname);
-        categoryid.setText("Category Id :" + rootid);
+        textshow.setText(timestanp);
+        rootcatname.setText(rootname);
+        categoryid.setText(rootid);
 
     }
 

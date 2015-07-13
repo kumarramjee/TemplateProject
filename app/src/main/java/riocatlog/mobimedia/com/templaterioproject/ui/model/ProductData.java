@@ -9,6 +9,7 @@ public class ProductData extends MainCategories {
     public String type_id;
     public String price;
     public String visibility;
+    public String description;
    /* public String attribute_set_id;
     public String type_id;
     public String sku;
