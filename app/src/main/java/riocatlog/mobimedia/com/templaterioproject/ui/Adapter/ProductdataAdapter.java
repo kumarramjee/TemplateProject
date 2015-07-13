@@ -58,9 +58,12 @@ public class ProductdataAdapter extends BaseAdapter {
             holder.type_id = (TextView) convertView.findViewById(R.id.type_id);
             holder.price = (TextView) convertView.findViewById(R.id.price);
             holder.visibility = (TextView) convertView.findViewById(R.id.visibility);
+            holder.visibilitytext = (TextView) convertView.findViewById(R.id.visibilitytext);
+
             holder.descritiponmtxt = (TextView) convertView.findViewById(R.id.descritiponmtxt);
             holder.descritiponmtxt.setText("Description");
             holder.description = (TextView) convertView.findViewById(R.id.description);
+
 
             convertView.setTag(holder);
         } else {
@@ -73,6 +76,7 @@ public class ProductdataAdapter extends BaseAdapter {
         holder.type_id.setText(mproductdata.type_id);
         holder.price.setText(mproductdata.price);
         holder.visibility.setText(mproductdata.visibility);
+        holder.visibilitytext.setText("SKU");
         holder.description.setText(mproductdata.description);
         return convertView;
     }
@@ -86,6 +90,7 @@ public class ProductdataAdapter extends BaseAdapter {
         TextView visibility;
         TextView descritiponmtxt;
         TextView description;
+        TextView visibilitytext;
     }
 
 }

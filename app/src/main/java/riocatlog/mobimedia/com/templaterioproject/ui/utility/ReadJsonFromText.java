@@ -35,8 +35,9 @@ public class ReadJsonFromText {
                     productdata.entity_type_id = jobject.getString("entity_type_id");
                     productdata.type_id = jobject.getString("type_id");
                     productdata.price = jobject.getString("price");
-                    productdata.visibility=jobject.getString("visibility");
+                    productdata.visibility=jobject.getString("sku");
                     productdata.description=jobject.getString("description");
+
                     mListProductdata.add(productdata);
                     /*
                     productdata.sku = jobject.getString("sku");
