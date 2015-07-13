@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:background="#000000"
     tools:context="riocatlog.mobimedia.com.templaterioproject.ui.ui.NextActivity">
 
@@ -24,7 +23,6 @@
         android:layout_below="@+id/textlistdata"
         android:layout_margin="10dp"
         android:background="#542154"></ListView>
-
 
 
     <TextView
